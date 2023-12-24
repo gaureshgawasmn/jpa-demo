@@ -12,6 +12,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class JpaDemoApplication implements CommandLineRunner {
@@ -36,8 +38,8 @@ public class JpaDemoApplication implements CommandLineRunner {
 
 		/*int courseId = 10001;
 		List<Review> reviews = new ArrayList<>();
-		reviews.add(new Review("5","Good course. Liked it!!!"));
-		reviews.add(new Review("4","Good explanation"));
+		reviews.add(new Review(ReviewRating.FIVE,"Good course. Liked it!!!"));
+		reviews.add(new Review(ReviewRating.FOUR,"Good explanation"));
 		courseRepository.addCourseReview(courseId, reviews);*/
 
         // testing add student and course to check the join table populating data

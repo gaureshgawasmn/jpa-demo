@@ -30,10 +30,12 @@ class CourseRepositoryTest {
     @Autowired
     EntityManager em;
     @Test
+    @Transactional
     void findById() {
         logger.info("Test findById is running...");
         Course course = repository.findById(10001);
         assertEquals("JPA in 50 Steps", course.getName());
+        logger.info("reviews -> {}", course.getReviews());
     }
 
     @Test

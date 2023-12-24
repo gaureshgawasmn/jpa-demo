@@ -8,7 +8,8 @@ public class Review {
     @Id
     @GeneratedValue
     private int id;
-    private String rating;
+    @Enumerated(EnumType.STRING)
+    private ReviewRating rating;
     private String description;
     @ManyToOne(fetch = FetchType.LAZY)  // **ToOne type is always eager fetching hence provided the lazy type
     private Course course;
@@ -16,7 +17,7 @@ public class Review {
     public Review() {
     }
 
-    public Review(String rating, String description) {
+    public Review(ReviewRating rating, String description) {
         this.rating = rating;
         this.description = description;
     }
@@ -30,11 +31,11 @@ public class Review {
         return this;
     }
 
-    public String getRating() {
+    public ReviewRating getRating() {
         return rating;
     }
 
-    public Review setRating(String rating) {
+    public Review setRating(ReviewRating rating) {
         this.rating = rating;
         return this;
     }
