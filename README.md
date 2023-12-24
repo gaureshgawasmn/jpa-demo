@@ -28,3 +28,9 @@ A review have Many-to-one relationship with course as one course can have many r
 
 #### Employee
 Employee is an abstract class having two concrete implementations FullTimeEmployee and PartTimeEmployee which are used to showcase options available for inheritance with JPA and Hibernate
+
+
+### Spring Data JPA 
+Using spring data jpa exposed the CourseSpringDataRepository at path /courses you can try it http://localhost:8081/courses
+
+This will expose all the url with operations on courses. Helpful in prototype phase not recommended for production.

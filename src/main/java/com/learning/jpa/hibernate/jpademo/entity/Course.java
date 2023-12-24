@@ -1,5 +1,6 @@
 package com.learning.jpa.hibernate.jpademo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.NamedQueries;
@@ -30,6 +31,7 @@ public class Course {
     @OneToMany(mappedBy = "course") // one to many is by default lazy fetch hence no need to add
     private List<Review> reviews = new ArrayList<>();
     @ManyToMany(mappedBy = "courses") // making owning side of relationship to student
+    @JsonIgnore // added to ignore while forming json object
     private List<Student> students = new ArrayList<>();
     public Course() {
     }

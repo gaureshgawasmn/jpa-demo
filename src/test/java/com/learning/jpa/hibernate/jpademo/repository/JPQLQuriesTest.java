@@ -37,7 +37,7 @@ class JPQLQuriesTest {
         logger.info("Test getAllCourses is running...");
         List<Course> courses = repository.getAllCourses();
         courses.stream().forEach(System.out::println);
-        assertEquals(4, courses.size());
+        assertEquals(5, courses.size());
     }
 
     @Test
