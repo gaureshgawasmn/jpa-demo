@@ -25,3 +25,6 @@ The passport to student relationship is owned by student class , and we are prov
 A review is unique to a course.
 
 A review have Many-to-one relationship with course as one course can have many reviews
+
+#### Employee
+Employee is an abstract class having two concrete implementations FullTimeEmployee and PartTimeEmployee which are used to showcase options available for inheritance with JPA and Hibernate
