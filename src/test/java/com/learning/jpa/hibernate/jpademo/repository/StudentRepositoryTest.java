@@ -1,6 +1,7 @@
 package com.learning.jpa.hibernate.jpademo.repository;
 
 import com.learning.jpa.hibernate.jpademo.JpaDemoApplication;
+import com.learning.jpa.hibernate.jpademo.entity.Course;
 import com.learning.jpa.hibernate.jpademo.entity.Passport;
 import com.learning.jpa.hibernate.jpademo.entity.Student;
 import jakarta.persistence.EntityManager;
@@ -42,5 +43,21 @@ class StudentRepositoryTest {
         Passport passport = em.find(Passport.class, 40001);
         logger.info("passport =>" + passport);
         logger.info("Student =>" + passport.getStudent());
+    }
+
+    @Test
+    @Transactional
+    public void retrieveCoursesForStudent() {
+        Student student = repository.findById(20001);
+        logger.info("student => " + student);
+        logger.info("student courses=> " + student.getCourses());
+    }
+
+    @Test
+    @Transactional
+    public void retrieveStudentsForCourse() {
+        Course course = em.find(Course.class, 10001);
+        logger.info("course => " + course);
+        logger.info("course students=> " + course.getStudents());
     }
 }

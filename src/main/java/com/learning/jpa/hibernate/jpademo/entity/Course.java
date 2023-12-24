@@ -29,7 +29,8 @@ public class Course {
     private LocalDateTime createdDate;
     @OneToMany(mappedBy = "course") // one to many is by default lazy fetch hence no need to add
     private List<Review> reviews = new ArrayList<>();
-
+    @ManyToMany(mappedBy = "courses") // making owning side of relationship to student
+    private List<Student> students = new ArrayList<>();
     public Course() {
     }
 
@@ -66,6 +67,20 @@ public class Course {
 
     public Course removeReview(Review review) {
         this.reviews.remove(review);
+        return this;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public Course addStudent(Student student) {
+        this.students.add(student);
+        return this;
+    }
+
+    public Course removeStudent(Student student) {
+        this.students.remove(student);
         return this;
     }
 

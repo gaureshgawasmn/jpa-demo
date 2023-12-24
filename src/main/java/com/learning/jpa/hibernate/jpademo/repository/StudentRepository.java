@@ -1,5 +1,6 @@
 package com.learning.jpa.hibernate.jpademo.repository;
 
+import com.learning.jpa.hibernate.jpademo.entity.Course;
 import com.learning.jpa.hibernate.jpademo.entity.Passport;
 import com.learning.jpa.hibernate.jpademo.entity.Student;
 import jakarta.persistence.EntityManager;
@@ -43,6 +44,16 @@ public class StudentRepository {
         em.persist(passport);
         em.persist(student);
         return student;
+    }
+
+    public void addStudentAndCourse(Student student, Course course) {
+        em.persist(student);
+        em.persist(course);
+        // make the relation both way
+        student.addCourse(course);
+        course.addStudent(student);
+        // persist the owning side of relationship
+        em.persist(student);
     }
 
     // using JPQL

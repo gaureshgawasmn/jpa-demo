@@ -8,12 +8,14 @@ And a course can also have many reviews associated with it.
 
 A course have OneToMany relationship with Review as a course can have many reviews
 
+A course has ManyToMany relationship with student.
 
 #### Student
 A student can enroll multiple courses.
 
 A student have a passport associated with it which is unique. In current code case Student is owning the relationship.
 
+A student has ManyToMany relationship with course.
 #### Passport
 A passport is unique per student.
 

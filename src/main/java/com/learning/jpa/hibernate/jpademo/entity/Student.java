@@ -2,6 +2,9 @@ package com.learning.jpa.hibernate.jpademo.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Student {
 
@@ -13,6 +16,12 @@ public class Student {
 
     @OneToOne(fetch = FetchType.LAZY) // fetch type lazy will not load the passport details unless it is asked
     private Passport passport;
+
+    @ManyToMany
+    @JoinTable(name = "STUDENT_COURSE",
+            joinColumns = @JoinColumn(name = "STUDENT_ID"),
+            inverseJoinColumns = @JoinColumn(name = "COURSE_ID")) // added this to customize the join table
+    private List<Course> courses = new ArrayList<>();
 
     public Student() {
     }
@@ -45,6 +54,20 @@ public class Student {
 
     public Student setPassport(Passport passport) {
         this.passport = passport;
+        return this;
+    }
+
+    public List<Course> getCourses() {
+        return courses;
+    }
+
+    public Student addCourse(Course course) {
+        this.courses.add(course);
+        return this;
+    }
+
+    public Student removeCourse(Course course) {
+        this.courses.remove(course);
         return this;
     }
 
