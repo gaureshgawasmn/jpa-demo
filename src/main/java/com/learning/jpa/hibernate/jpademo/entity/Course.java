@@ -17,6 +17,7 @@ import java.util.List;
         @NamedQuery(name = "query_get_all_courses", query = "select c from Course c"),
         @NamedQuery(name = "query_get_100_Step_courses", query = "select c from Course c where name like '%100 Steps'")
 })
+// @Cacheable // added to use second level caching using ehcache
 public class Course {
 
     @Id
@@ -29,10 +30,12 @@ public class Course {
     @CreationTimestamp
     private LocalDateTime createdDate;
     @OneToMany(mappedBy = "course") // one to many is by default lazy fetch hence no need to add
+    @JsonIgnore // added to ignore while forming json object
     private List<Review> reviews = new ArrayList<>();
     @ManyToMany(mappedBy = "courses") // making owning side of relationship to student
     @JsonIgnore // added to ignore while forming json object
     private List<Student> students = new ArrayList<>();
+
     public Course() {
     }
 

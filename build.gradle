@@ -19,6 +19,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	// to use spring data rest apis
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	// to use second level cache using hibernate ehcache
+	// implementation 'org.hibernate:hibernate-ehcache:5.6.15.Final'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'junit:junit:4.13.1'
     runtimeOnly 'com.h2database:h2'

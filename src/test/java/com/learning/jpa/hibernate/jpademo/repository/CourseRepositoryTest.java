@@ -37,6 +37,17 @@ class CourseRepositoryTest {
     }
 
     @Test
+    @Transactional
+    void findById_firstLevelCache() {
+        // first time only query fire second time not if mark it as transactional if removed this annotation it will call database twice
+        // boundary of first level cache is transaction boundary
+        Course course = repository.findById(10001);
+        logger.info("Course fetch -> {}", course);
+        Course course2 = repository.findById(10001);
+        logger.info("Course fetch again-> {}", course2);
+    }
+
+    @Test
     @DirtiesContext // this annotation will reset the data after the test is run
     @Disabled // need to remove the reviews also before deleting course
     void deleteById() {
