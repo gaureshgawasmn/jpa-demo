@@ -7,6 +7,8 @@ import org.hibernate.annotations.NamedQuery;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 //@NamedQuery(name = "query_get_all_courses", query = "select c from Course c")
@@ -25,6 +27,8 @@ public class Course {
     private LocalDateTime lastUpdatedDate;
     @CreationTimestamp
     private LocalDateTime createdDate;
+    @OneToMany(mappedBy = "course") // one to many is by default lazy fetch hence no need to add
+    private List<Review> reviews = new ArrayList<>();
 
     public Course() {
     }
@@ -48,6 +52,20 @@ public class Course {
 
     public Course setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public Course addReviews(Review review) {
+        this.reviews.add(review);
+        return this;
+    }
+
+    public Course removeReview(Review review) {
+        this.reviews.remove(review);
         return this;
     }
 

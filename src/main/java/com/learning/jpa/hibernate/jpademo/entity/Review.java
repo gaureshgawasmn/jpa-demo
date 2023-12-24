@@ -1,9 +1,6 @@
 package com.learning.jpa.hibernate.jpademo.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Review {
@@ -13,11 +10,14 @@ public class Review {
     private int id;
     private String rating;
     private String description;
+    @ManyToOne(fetch = FetchType.LAZY)  // **ToOne type is always eager fetching hence provided the lazy type
+    private Course course;
 
     public Review() {
     }
 
-    public Review(String description) {
+    public Review(String rating, String description) {
+        this.rating = rating;
         this.description = description;
     }
 
@@ -45,6 +45,15 @@ public class Review {
 
     public Review setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public Review setCourse(Course course) {
+        this.course = course;
         return this;
     }
 

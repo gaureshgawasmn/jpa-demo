@@ -1,6 +1,7 @@
 package com.learning.jpa.hibernate.jpademo.repository;
 
 import com.learning.jpa.hibernate.jpademo.entity.Course;
+import com.learning.jpa.hibernate.jpademo.entity.Review;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
@@ -67,5 +68,20 @@ public class CourseRepository {
         Query nativeQuery = em.createNativeQuery("select * from Course where id = :id", Course.class);
         nativeQuery.setParameter("id", 10001);
         return nativeQuery.getResultList();
+    }
+
+    /**
+     * Add the reviews for course using course id
+     *
+     * @param courseId the course id int
+     * @param reviews the review list
+     */
+    public void addCourseReview(int courseId, List<Review> reviews) {
+        Course course = findById(courseId);
+        for(Review review:reviews){
+            course.addReviews(review);
+            review.setCourse(course);
+            em.persist(review);
+        }
     }
 }

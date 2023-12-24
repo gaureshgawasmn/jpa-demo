@@ -2,6 +2,10 @@ package com.learning.jpa.hibernate.jpademo.repository;
 
 import com.learning.jpa.hibernate.jpademo.JpaDemoApplication;
 import com.learning.jpa.hibernate.jpademo.entity.Course;
+import com.learning.jpa.hibernate.jpademo.entity.Review;
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -23,6 +27,8 @@ class CourseRepositoryTest {
 
     @Autowired
     CourseRepository repository;
+    @Autowired
+    EntityManager em;
     @Test
     void findById() {
         logger.info("Test findById is running...");
@@ -32,6 +38,7 @@ class CourseRepositoryTest {
 
     @Test
     @DirtiesContext // this annotation will reset the data after the test is run
+    @Disabled // need to remove the reviews also before deleting course
     void deleteById() {
         logger.info("Test deleteById is running...");
         repository.deleteById(10001);
@@ -74,5 +81,19 @@ class CourseRepositoryTest {
         List<Course> courses = repository.getAllCoursesWith100NativeWithParameter2();
         courses.stream().forEach(System.out::println);
         assertEquals(1, courses.size());
+    }
+
+    @Test
+    @Transactional
+    void retrieveReviewsForCourse(){
+        Course course = repository.findById(10001);
+        logger.info("{}",course.getReviews());
+    }
+
+    @Test
+    @Transactional
+    void retrieveCourseForReview(){
+        Review review = em.find(Review.class, 50001);
+        logger.info("{}",review.getCourse());
     }
 }
