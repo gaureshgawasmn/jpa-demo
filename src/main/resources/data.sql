@@ -20,7 +20,7 @@ insert into review (id, rating, description, course_id) values (50003,'1', 'Bad 
 insert into review (id, rating, course_id) values (50004,'3',10003);
 
 insert into student_course (student_id, course_id) values (20001, 10001);
-insert into student_course (student_id, course_id) values (20001, 10002);
+--insert into student_course (student_id, course_id) values (20001, 10002);
 insert into student_course (student_id, course_id) values (20001, 10004);
 insert into student_course (student_id, course_id) values (20002, 10001);
 insert into student_course (student_id, course_id) values (20002, 10003);
